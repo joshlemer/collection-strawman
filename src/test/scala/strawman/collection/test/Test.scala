@@ -349,6 +349,34 @@ class StrawmanTest {
     val xs12: immutable.BitSet = xs11
   }
 
+  def nonEmptyLists(): Unit = {
+    import scala.Some
+
+    println("------- NonEmptyLists (start)")
+    val nonEmpty = NonEmptyList(1,2,3)
+    val list = List(1,2,3)
+
+
+    println(nonEmpty.head)
+    println(nonEmpty.headOption: Some[Int])
+    println(nonEmpty.tail)
+    println(nonEmpty.zip(NonEmptyList(67)))
+    println(nonEmpty ++ Nil: NonEmptyList[Int])
+    println(nonEmpty ++ nonEmpty: NonEmptyList[Int])
+    println(nonEmpty ++ list: NonEmptyList[Int])
+    println(nonEmpty.map(_.toString): NonEmptyList[String])
+
+    println(nonEmpty.reverse: NonEmptyList[Int])
+    println(9 :: nonEmpty : NonEmptyList[Int])
+    println(9 :: list: NonEmptyList[Int])
+    println(9 :: Nil: NonEmptyList[Int])
+
+    println(NonEmptyList.fill(4)(77))
+
+
+    println("------- NonEmptyLists (end)")
+  }
+
   @Test
   def mainTest: Unit = {
     val ints = List(1, 2, 3)
@@ -363,5 +391,6 @@ class StrawmanTest {
     arrayOps(Array(1, 2, 3))
     lazyListOps(LazyList(1, 2, 3))
     equality()
+    nonEmptyLists()
   }
 }

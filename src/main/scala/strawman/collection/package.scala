@@ -114,6 +114,9 @@ package object collection extends LowPriority {
     def toClassic: scala.collection.Seq[A] =
       new scala.collection.mutable.ArrayBuffer ++= s.iterator().toClassic
   }
+
+  type NonEmptyList[+A] = strawman.collection.immutable.::[A]
+  val NonEmptyList = strawman.collection.immutable.::
 }
 
 class LowPriority {
